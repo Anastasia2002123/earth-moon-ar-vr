@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Earth-Moon VR Scene</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <!-- Джерело світла на відстані 30 000 км (масштабовано) -->
+    <a-light type="point" intensity="1" position="0 0 4.6875"></a-light>
+
+    <!-- Земля -->
+    <a-sphere
+      position="0 0 -5"
+      radius="0.2"
+      segments-height="32"
+      material="src: assets/earth.png">
+      <!-- Анімація обертання Землі (1 доба = 24 години, масштаб часу 1:17000) -->
+      <a-animation
+        attribute="rotation"
+        dur="5096" <!-- 24 год * 3600 сек / 17000 * 1000 = 5.096 сек -->
+        to="0 360 0"
+        repeat="indefinite"
+        easing="linear"></a-animation>
+    </a-sphere>
+
+    <!-- Місяць -->
+    <a-entity position="0.6 0 -5">
+      <a-sphere
+        radius="0.054375"
+        segments-height="32"
+        material="src: assets/moon.png">
+        <!-- Анімація обертання Місяця навколо Землі (28 діб, масштаб часу 1:17000) -->
+        <a-animation
+          attribute="rotation"
+          dur="141926.4" <!-- 28 * 24 * 3600 / 17000 * 1000 = 141.9264 сек -->
+          to="0 360 0"
+          repeat="indefinite"
+          easing="linear"></a-animation>
+      </a-sphere>
+    </a-entity>
+
+    <!-- Камера -->
+    <a-camera position="0 0 0"></a-camera>
+  </a-scene>
+</body>
+</html>
